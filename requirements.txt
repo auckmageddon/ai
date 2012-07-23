@@ -3,3 +3,4 @@ PIL
 markdown
 fabric
 South
+django-tastypie
