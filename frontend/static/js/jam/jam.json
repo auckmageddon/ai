@@ -1,0 +1,10 @@
+{
+    "jam_version": "0.1.14",
+    "dependencies": {
+        "bootstrap": null,
+        "less": null,
+        "underscore": null,
+        "jquery": null,
+        "backbone": null
+    }
+}
