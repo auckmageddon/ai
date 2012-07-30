@@ -1,15 +1,28 @@
 require([
     'jquery',
     'backbone',
-    'js/news', 
-    'js/servers', 
-    'js/tournaments', 
+    'js/news',
+    'js/servers',
+    'js/tournaments',
     'js/schedule'
 ], function($, Backbone, News, Servers, Tournaments, Schedule) {
+    var $content = null,
+        canLog   = typeof(console) !== 'undefined';
 
-    var $content = $("#content");
+    // I'm a happy handy helper!
+    function log(arg) {
+        if (canLog) {
+            console.log(arg);
+        }
+    }
 
     var AppRouter = Backbone.Router.extend({
+        newsView:        null,
+        serversView:     null,
+        tournamentsView: null,
+        scheduleView:    null,
+
+
         routes: {
             'news':        'displayNews',
             'servers':     'displayServers',
@@ -20,33 +33,37 @@ require([
 		// the following are all dummies and incomplete...
 		// I'm trying to follow https://github.com/ccoenraets/backbone-directory/blob/master/web/js/main.js
         displayNews: function() {
-            var entryOne = new News.Entry({title: "test"}),
-                entryTwo = new News.Entry({title: "test2"}),
-                news     = new News.News([entryOne, entryTwo]);
-
-            console.log(new News.NewsView({model: news}).render());
-
-			$('#content').html(new News.NewsView({model: news}).render().el);
-
-            console.log('rendered');
+            this.changeView('newsView', News.NewsView);
 		},
+
         displayServers: function() {
-			$content.html(new ServersView().render());
+            this.changeView('serversView', Servers.ServerListView);
 		},
+
         displayTournaments: function() {
-			$content.html(new TournamentsView().render());
+            this.changeView('tournamentsView', Tournaments.TournamentListView);
 		},
+
         displaySchedule: function() {
-			$content.html(new ScheduleView().render());
-		}
+            this.changeView('scheduleView', Schedule.ScheduleView);
+		},
+
+        changeView: function(cachedReference, viewLoader, model) {
+            // this is kind of nasty, but whatever.
+            log(this[cachedReference]);
+            if (typeof(this[cachedReference]) === 'undefined' || this[cachedReference] === null) {
+                this[cachedReference] = new viewLoader();
+            }
+
+            $content.html(this[cachedReference].render().el);
+        }
     });
 
-    window.appRouter = new AppRouter();
-
-    Backbone.history.start();
-
-    $('#loadNews').on('click', function() {
-        appRouter.navigate('news', {'trigger': true});
+    $(document).ready(function() {
+        window.log = log;
+        $content = $('#content');
+        new AppRouter();
+        Backbone.history.start();
     });
 
 });

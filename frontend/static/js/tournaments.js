@@ -31,6 +31,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
         },
 
         render: function(eventName) {
+            this.$el.html('');
             _.each(this.model.models, function (tournament) {
                 this.$el.append(new TournamentView({model: tournament}).render().el);
             }, this);
@@ -40,7 +41,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     return {
         Tournament:  Tournament,
-        TournamentView: TournamentView
+        TournamentListView: TournamentListView
     };
 
 });

@@ -31,6 +31,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
         },
 
         render: function(eventName) {
+            this.$el.html('');
             _.each(this.model.models, function (event) {
                 this.$el.append(new EventView({model: event}).render().el);
             }, this);
@@ -41,6 +42,6 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
     return {
         Schedule:  Schedule,
         ScheduleView: ScheduleView
-    }
+    };
 
 });

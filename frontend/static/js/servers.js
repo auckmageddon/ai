@@ -31,6 +31,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
         },
 
         render: function(eventName) {
+            this.$el.html('');
             _.each(this.model.models, function (server) {
                 this.$el.append(new ServerView({model: server}).render().el);
             }, this);
@@ -40,7 +41,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     return {
         Server:  Server,
-        ServerView: ServerView
-    }
+        ServerListView: ServerListView
+    };
 
 });

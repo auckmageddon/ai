@@ -2033,7 +2033,7 @@ var jam = {
     "packages": [
         {
             "name": "bootstrap",
-            "location": "jam/bootstrap"
+            "location": "js/jam/bootstrap"
         },
         {
             "name": "less",
@@ -2042,17 +2042,17 @@ var jam = {
         },
         {
             "name": "underscore",
-            "location": "jam/underscore",
+            "location": "js/jam/underscore",
             "main": "underscore.js"
         },
         {
             "name": "jquery",
-            "location": "jam/jquery",
+            "location": "js/jam/jquery",
             "main": "jquery.js"
         },
         {
             "name": "backbone",
-            "location": "jam/backbone",
+            "location": "js/jam/backbone",
             "main": "backbone.js"
         }
     ],
