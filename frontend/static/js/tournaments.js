@@ -8,7 +8,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     });
 
-    var ServerView = Backbone.View.extend({
+    var TournamentView = Backbone.View.extend({
         tagName:  'li',
         template: _.template('<%= title %>'),
 
@@ -20,7 +20,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var TournamentListView = Backbone.View.extend({
         tagName: 'ul',
-        el: '#tournments',
+        el: '#tournaments',
 
         events: {
             'change': 'render'
@@ -41,6 +41,6 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
     return {
         Tournament:  Tournament,
         TournamentView: TournamentView
-    }
+    };
 
 });
