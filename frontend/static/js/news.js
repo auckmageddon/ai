@@ -20,7 +20,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var NewsView = Backbone.View.extend({
         tagName: 'ul',
-        el: '#news',
+        id: 'news',
 
         events: {
             'change': 'render'
@@ -39,8 +39,9 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
     });
 
     return {
+        Entry: Entry,
         News:  News,
         NewsView: NewsView
-    }
+    };
 
 });
