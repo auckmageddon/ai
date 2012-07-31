@@ -10,7 +10,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var EventView = Backbone.View.extend({
         tagName:  'li',
-        template: _.template('<%= title %>'),
+        template: _.template($('#schedule_event_template').html()),
 
         render: function(eventName) {
             this.$el.html(this.template(this.model.toJSON()));
@@ -19,7 +19,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
     });
 
     var ScheduleView = Backbone.View.extend({
-        tagName: 'ul',
+        tagName: 'ol',
         el: '#schedule',
 
         events: {
