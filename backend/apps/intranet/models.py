@@ -35,6 +35,7 @@ class Server(models.Model):
     max_players = models.IntegerField()
     map = models.CharField(max_length=50)
     last_seen = models.DateTimeField(auto_now=True)
+    is_permanent = models.BooleanField()
 
     def __unicode__(self):
         return "%s at %s" % (self.game, self.address)
