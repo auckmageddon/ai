@@ -1,11 +1,13 @@
 require([
     'jquery',
-    'backbone',
+    'backbone-tastypie',
     'js/news',
     'js/servers',
     'js/tournaments',
     'js/schedule'
 ], function($, Backbone, News, Servers, Tournaments, Schedule) {
+    'use strict';
+
     var $content = null,
         canLog   = typeof(console) !== 'undefined';
 
@@ -48,11 +50,11 @@ require([
             this.changeView('scheduleView', Schedule.ScheduleView);
 		},
 
-        changeView: function(cachedReference, viewLoader, model) {
+        changeView: function(cachedReference, ViewLoader, model) {
             // this is kind of nasty, but whatever.
             log(this[cachedReference]);
             if (typeof(this[cachedReference]) === 'undefined' || this[cachedReference] === null) {
-                this[cachedReference] = new viewLoader();
+                this[cachedReference] = new ViewLoader();
             }
 
             $content.html(this[cachedReference].render().el);

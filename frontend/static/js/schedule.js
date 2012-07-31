@@ -1,4 +1,4 @@
-define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
+define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var Event = Backbone.Model.extend({
 

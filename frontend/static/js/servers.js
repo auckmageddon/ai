@@ -1,4 +1,5 @@
-define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
+define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
+    'use strict';
 
     var Server = Backbone.Model.extend({
 
