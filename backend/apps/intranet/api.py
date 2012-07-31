@@ -1,10 +1,11 @@
 from tastypie.resources import ModelResource
 from models import Entry, Event, Server, Tournament, FAQ, BarTab
+import datetime
 
 
 class EntryResource(ModelResource):
     class Meta:
-        queryset = Entry.objects.all()
+        queryset = Entry.objects.all()[0:6]
         resource_name = 'entry'
 
 
