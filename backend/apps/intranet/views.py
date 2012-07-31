@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render_to_response
 from django.conf import settings
 
-from intranet.models import Server, BarTab
+from models import Server, BarTab
 from forms import AddServerForm
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from intranet.models import Entry, Event, Server, Tournament, FAQ, BarTab
+from models import Entry, Event, Server, Tournament, FAQ, BarTab
 
 admin.site.register(Entry)
 admin.site.register(Event)
