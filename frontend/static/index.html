@@ -43,7 +43,35 @@
     <!-- templates -->
     <script type="text/template" id="news_entry_template">
         <h2><%= title %></h2>
-        <%= content %>
+        <div class="news_content">
+            <%= content %>
+        </div>
+        <div class="news_meta"><%= enteredBy %> waz here at <%= enteredOn %></div>
+    </script>
+
+    <script type="text/template" id="schedule_event_template">
+        <div class="event_time"><%= happeningAt $></div>
+        <div class="event_name"><%= name %></div>
+    </script>
+
+    <script type="text/template" id="server_template">
+        <div class="server_game"><%= game =></div>
+        <div class="server_name"><%= name =></div>
+        <div class="server_address"><%= address =></div>
+        <div class="server_players"><%= players =></div>
+        <div class="server_max_players"><%= max_players =></div>
+        <div class="map"><%= map =></div>
+    </script>
+
+    <script type="text/template" id="tournament_template">
+        <div class="tournament_name"><a href="<%= challonge_url %>"><%= name %></a></div>
+        <div class="tournament_game"><%= game =></div>
+        <iframe class="tournament_challonge" src="challonge_url"></iframe>
+    </script>
+
+    <script type="text/template" id="faq_template">
+        <h3 class="faq_question"><%= question %></h3>
+        <div class="faq_answer"><%= answer %></div>
     </script>
 
     <script type="text/javascript" src="js/jam/require.js"></script>
