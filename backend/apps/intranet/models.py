@@ -15,6 +15,9 @@ class Entry(models.Model):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        ordering = ["-entered_on"]
+
 
 class Event(models.Model):
     name           = models.CharField(max_length=255)
@@ -25,6 +28,9 @@ class Event(models.Model):
 
     def __unicode__(self):
         return u"%s at %s" % (self.name, self.happening_at)
+
+    class Meta:
+        ordering = ["happening_at"]
 
 
 class Server(models.Model):
@@ -40,6 +46,9 @@ class Server(models.Model):
     def __unicode__(self):
         return u"%s at %s" % (self.game, self.address)
 
+    class Meta:
+        ordering = ["game"]
+
 
 class Tournament(models.Model):
     game          = models.CharField(max_length=255)
@@ -52,6 +61,9 @@ class Tournament(models.Model):
     def __unicode__(self):
         return self.name
 
+    class Meta:
+        ordering = ["game"]
+
 
 class FAQ(models.Model):
     name     = models.CharField(max_length=255)
@@ -60,6 +72,9 @@ class FAQ(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ["question"]
 
 
 class BarTab(models.Model):
