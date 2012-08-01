@@ -10,16 +10,16 @@
 
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/bootstrap.min.css">
     <style>
         body {
           padding-top: 60px;
           padding-bottom: 40px;
         }
     </style>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/style.css">
 
-    <script src="js/libs/modernizr-2.5.3.min.js"></script>
+    <script src="{{ STATIC_URL}}js/libs/modernizr-2.5.3.min.js"></script>
 
 </head>
 <body>
@@ -46,7 +46,7 @@
         <div class="news_content">
             <%= content %>
         </div>
-        <div class="news_meta"><%= enteredBy %> waz here at <%= enteredOn %></div>
+        <div class="news_meta">someone wrote this shit at <%= entered_on %></div>
     </script>
 
     <script type="text/template" id="schedule_event_template">
@@ -74,7 +74,7 @@
         <div class="faq_answer"><%= answer %></div>
     </script>
 
-    <script type="text/javascript" src="js/jam/require.js"></script>
-    <script type="text/javascript" src="js/script.js" defer="defer"></script>
+    <script type="text/javascript" src="{{ STATIC_URL}}js/jam/require.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL}}js/script.js" defer="defer"></script>
 </body>
 </html>

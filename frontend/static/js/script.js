@@ -1,10 +1,10 @@
 require([
     'jquery',
     'backbone-tastypie',
-    'js/news',
-    'js/servers',
-    'js/tournaments',
-    'js/schedule'
+    'static/js/news',
+    'static/js/servers',
+    'static/js/tournaments',
+    'static/js/schedule'
 ], function($, Backbone, News, Servers, Tournaments, Schedule) {
     'use strict';
 

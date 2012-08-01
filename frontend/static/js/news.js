@@ -5,7 +5,8 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
     });
 
     var News = Backbone.Collection.extend({
-
+        model: Entry,
+        url: 'http://localhost:8000/api/v1/entry/?format=json'
     });
 
     var EntryView = Backbone.View.extend({
@@ -27,7 +28,9 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
         },
 
         initialize: function() {
+            this.model = new News();
             this.model.bind('reset', this.render, this);
+            this.model.fetch();
         },
 
         render: function(eventName) {

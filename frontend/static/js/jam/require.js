@@ -2033,31 +2033,31 @@ var jam = {
     "packages": [
         {
             "name": "bootstrap",
-            "location": "js/jam/bootstrap"
+            "location": "static/js/jam/bootstrap"
         },
         {
             "name": "less",
-            "location": "jam/less",
+            "location": "static/js/jam/less",
             "main": "./lib/index.js"
         },
         {
             "name": "underscore",
-            "location": "js/jam/underscore",
+            "location": "static/js/jam/underscore",
             "main": "underscore.js"
         },
         {
             "name": "jquery",
-            "location": "js/jam/jquery",
+            "location": "static/js/jam/jquery",
             "main": "jquery.js"
         },
         {
             "name": "backbone",
-            "location": "js/jam/backbone",
+            "location": "static/js/jam/backbone",
             "main": "backbone.js"
         },
         {
             "name": "backbone-tastypie",
-            "location": "js/jam/backbone-tastypie",
+            "location": "static/js/jam/backbone-tastypie",
             "main": "backbone-tastypie.js"
         }
     ],
