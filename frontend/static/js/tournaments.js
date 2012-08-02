@@ -5,12 +5,13 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
     });
 
     var TournamentList = Backbone.Collection.extend({
-
+        model: Tournament,
+        url: '/api/v1/tournament/?format=json'
     });
 
     var TournamentView = Backbone.View.extend({
         tagName:  'li',
-        template: _.template('<%= title %>'),
+        template: _.template($('#tournament_template').html()),
 
         render: function(eventName) {
             this.$el.html(this.template(this.model.toJSON()));
@@ -27,7 +28,9 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
         },
 
         initialize: function() {
+            this.model = new TournamentList();
             this.model.bind('reset', this.render, this);
+            this.model.fetch();
         },
 
         render: function(eventName) {

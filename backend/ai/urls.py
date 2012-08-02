@@ -16,5 +16,6 @@ api.register(BarTabResource())
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(api.urls)),
-    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'})
+    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'}),
+    url(r'^screen\.html$', 'django.views.generic.simple.direct_to_template', {'template': 'screen.html'})
 )

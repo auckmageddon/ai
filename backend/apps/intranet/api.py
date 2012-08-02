@@ -5,7 +5,7 @@ import datetime
 
 class EntryResource(ModelResource):
     class Meta:
-        queryset = Entry.objects.all()[0:6]
+        queryset = Entry.objects.filter(is_published=True)[0:6]
         resource_name = 'entry'
 
 

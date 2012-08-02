@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 
 class Entry(models.Model):
     title        = models.CharField(max_length=255)
-    slug         = models.SlugField()
     content      = models.TextField()
 
-    is_published = models.BooleanField()
+    is_published = models.BooleanField(default=True)
+    frontpage_me = models.BooleanField(default=True)
 
     entered_by   = models.ForeignKey(User)
     entered_on   = models.DateTimeField(auto_now_add=True)
@@ -23,8 +23,8 @@ class Event(models.Model):
     name           = models.CharField(max_length=255)
     happening_at   = models.DateTimeField()
 
-    is_publishable = models.BooleanField()
-    is_published   = models.BooleanField()
+    is_publishable = models.BooleanField(default=True)
+    is_published   = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u"%s at %s" % (self.name, self.happening_at)
@@ -51,10 +51,8 @@ class Server(models.Model):
 
 
 class Tournament(models.Model):
-    game          = models.CharField(max_length=255)
     name          = models.CharField(max_length=255)
     challonge_url = models.URLField()
-    winner        = models.CharField(max_length=255)
 
     scheduled_for = models.ForeignKey(Event)
 
@@ -62,7 +60,7 @@ class Tournament(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["game"]
+        ordering = ["name"]
 
 
 class FAQ(models.Model):

@@ -10,7 +10,6 @@
 
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="{{ STATIC_URL}}css/bootstrap.min.css">
     <style>
         body {
           padding-top: 60px;
@@ -27,18 +26,31 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="#">Auckmageddon</a>
-            <ul class="nav">
-                <li><a href="#news">Home</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#servers">Servers</a></li>
-                <li><a href="#tournaments">Tournaments</a></li>
-            </ul>
+            <div class="row">
+                <div class="span6"><a class="brand" href="#">Auckmageddon</a></div>
+                <div class="span6">
+                <ul class="nav">
+                    <li><a href="#news">Home</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#servers">Servers</a></li>
+                    <li><a href="#tournaments">Tournaments</a></li>
+                </ul></div>
+            </div>
         </div>
       </div>
     </div>
 
-    <div class="container"><div id="content"></div></div>
+    <div class="container">
+        <div class="row">
+            <div id="content" class="span9">
+                <ul id="news" class="hidden"></ul>
+                <ol id="schedule" class="hidden"></ol>
+                <ul id="servers" class="hidden"></ul>
+                <ul id="tournaments" class="hidden"></ul>
+            </div>
+            <div id="tweets" class="span3"></div>
+        </div>
+    </div>
 
     <!-- templates -->
     <script type="text/template" id="news_entry_template">
@@ -50,23 +62,21 @@
     </script>
 
     <script type="text/template" id="schedule_event_template">
-        <div class="event_time"><%= happeningAt %></div>
+        <div class="event_time"><%= happening_at %></div>
         <div class="event_name"><%= name %></div>
     </script>
 
     <script type="text/template" id="server_template">
-        <div class="server_game"><%= game =></div>
-        <div class="server_name"><%= name =></div>
-        <div class="server_address"><%= address =></div>
-        <div class="server_players"><%= players =></div>
-        <div class="server_max_players"><%= max_players =></div>
-        <div class="map"><%= map =></div>
+        <div class="server_game"><%= game %></div>
+        <div class="server_name"><%= name %></div>
+        <div class="server_address"><%= address %></div>
+        <div class="server_players"><%= players %></div>
+        <div class="server_max_players"><%= max_players %></div>
+        <div class="map"><%= map_name %></div>
     </script>
 
     <script type="text/template" id="tournament_template">
         <div class="tournament_name"><a href="<%= challonge_url %>"><%= name %></a></div>
-        <div class="tournament_game"><%= game =></div>
-        <iframe class="tournament_challonge" src="challonge_url"></iframe>
     </script>
 
     <script type="text/template" id="faq_template">
