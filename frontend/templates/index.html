@@ -1,0 +1,92 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Auckmageddon</title>
+
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        body {
+          padding-top: 60px;
+          padding-bottom: 40px;
+        }
+    </style>
+    <link rel="stylesheet" href="{{ STATIC_URL}}css/style.css">
+
+    <script src="{{ STATIC_URL}}js/libs/modernizr-2.5.3.min.js"></script>
+
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <div class="row">
+                <div class="span6"><a class="brand" href="#">Auckmageddon 7</a></div>
+                <div class="span6">
+                <ul class="nav">
+                    <li><a href="#news">Home</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#servers">Servers</a></li>
+                    <li><a href="#tournaments">Tournaments</a></li>
+                </ul></div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="content" class="span9">
+                <ul id="news" class="hidden"></ul>
+                <ol id="schedule" class="hidden"></ol>
+                <ul id="servers" class="hidden"></ul>
+                <ul id="tournaments" class="hidden"></ul>
+            </div>
+            <div id="tweets" class="span3"></div>
+        </div>
+    </div>
+
+    <!-- templates -->
+    <script type="text/template" id="news_entry_template">
+        <h2><%= title %></h2>
+        <div class="news_content">
+            <%= content %>
+        </div>
+        <div class="news_meta">someone wrote this shit at <%= entered_on %></div>
+    </script>
+
+    <script type="text/template" id="schedule_event_template">
+        <div class="event_time"><%= happening_at %></div>
+        <div class="event_name"><%= name %></div>
+    </script>
+
+    <script type="text/template" id="server_template">
+        <div class="server_game"><%= game %></div>
+        <div class="server_name"><%= name %></div>
+        <div class="server_address"><%= address %></div>
+        <div class="server_players"><%= players %></div>
+        <div class="server_max_players"><%= max_players %></div>
+        <div class="map"><%= map_name %></div>
+    </script>
+
+    <script type="text/template" id="tournament_template">
+        <div class="tournament_name"><a href="<%= challonge_url %>"><%= name %></a></div>
+    </script>
+
+    <script type="text/template" id="faq_template">
+        <h3 class="faq_question"><%= question %></h3>
+        <div class="faq_answer"><%= answer %></div>
+    </script>
+
+    <script type="text/javascript" src="{{ STATIC_URL}}js/jam/require.js"></script>
+    <script type="text/javascript" src="http://a5.constructi.co.nz/static/js/cufon-yui.js"></script>
+    <script type="text/javascript" src="http://a5.constructi.co.nz/static/js/earth_400.font.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL}}js/script.js" defer="defer"></script>
+</body>
+</html>

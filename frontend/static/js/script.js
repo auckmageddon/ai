@@ -1,11 +1,13 @@
 require([
     'jquery',
-    'backbone',
-    'js/news',
-    'js/servers',
-    'js/tournaments',
-    'js/schedule'
+    'backbone-tastypie',
+    'static/js/news',
+    'static/js/servers',
+    'static/js/tournaments',
+    'static/js/schedule'
 ], function($, Backbone, News, Servers, Tournaments, Schedule) {
+    'use strict';
+
     var $content = null,
         canLog   = typeof(console) !== 'undefined';
 
@@ -14,6 +16,21 @@ require([
         if (canLog) {
             console.log(arg);
         }
+    }
+
+    function refresh(appRouter) {
+        var views = [appRouter.newsView, appRouter.serversView, appRouter.tournamentsView, appRouter.scheduleView];
+
+        for (var viewIdx in views) {
+            var view = views[viewIdx];
+            if (view != null) {
+                view.model.fetch();
+            }
+        }
+
+        setTimeout(function() {
+            refresh(appRouter);
+        }, 30000);
     }
 
     var AppRouter = Backbone.Router.extend({
@@ -27,7 +44,8 @@ require([
             'news':        'displayNews',
             'servers':     'displayServers',
             'tournaments': 'displayTournaments',
-            'schedule':    'displaySchedule'
+            'schedule':    'displaySchedule',
+            '*path':       'displayNews' 
         },
 
 		// the following are all dummies and incomplete...
@@ -48,22 +66,28 @@ require([
             this.changeView('scheduleView', Schedule.ScheduleView);
 		},
 
-        changeView: function(cachedReference, viewLoader, model) {
+        changeView: function(cachedReference, ViewLoader, model) {
             // this is kind of nasty, but whatever.
-            log(this[cachedReference]);
             if (typeof(this[cachedReference]) === 'undefined' || this[cachedReference] === null) {
-                this[cachedReference] = new viewLoader();
+                this[cachedReference] = new ViewLoader();
+                this[cachedReference].render();
             }
 
-            $content.html(this[cachedReference].render().el);
+            this[cachedReference].model.fetch();
+            $content.children().removeClass('show').addClass('hidden');
+            this[cachedReference].$el.removeClass('hidden').addClass('show');
         }
     });
 
     $(document).ready(function() {
         window.log = log;
         $content = $('#content');
-        new AppRouter();
+        var appRouter = new AppRouter();
         Backbone.history.start();
+        refresh(appRouter);
+
+        Cufon.set('fontFamily', 'earth');
+        Cufon.replace('.navbar .brand');
     });
 
 });

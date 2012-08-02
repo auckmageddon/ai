@@ -1,10 +1,11 @@
 from tastypie.resources import ModelResource
-from intranet.models import Entry, Event, Server, Tournament, FAQ, BarTab
+from models import Entry, Event, Server, Tournament, FAQ, BarTab
+import datetime
 
 
 class EntryResource(ModelResource):
     class Meta:
-        queryset = Entry.objects.all()
+        queryset = Entry.objects.filter(is_published=True)[0:6]
         resource_name = 'entry'
 
 

@@ -1,16 +1,38 @@
-define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
+define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var Event = Backbone.Model.extend({
 
     });
 
     var Schedule = Backbone.Collection.extend({
+        model: Event,
+        url: '/api/v1/event/?format=json',
 
+        next_event: function() {
+            log(this.models);
+            var now = Date.now();
+            var upcoming = _.filter(this.models, function(anEvent) {
+                return now < anEvent['happening_at'];
+            });
+            log(upcoming);
+
+            return upcoming[0];
+        }
     });
 
     var EventView = Backbone.View.extend({
         tagName:  'li',
-        template: _.template('<%= title %>'),
+        template: _.template($('#schedule_event_template').html()),
+
+        render: function(eventName) {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    });
+
+    var EventScreenView = Backbone.View.extend({
+        tagName: 'div',
+        template: _.template($('#schedule_event_template').html()),
 
         render: function(eventName) {
             this.$el.html(this.template(this.model.toJSON()));
@@ -19,7 +41,7 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
     });
 
     var ScheduleView = Backbone.View.extend({
-        tagName: 'ul',
+        tagName: 'ol',
         el: '#schedule',
 
         events: {
@@ -27,7 +49,9 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
         },
 
         initialize: function() {
+            this.model = new Schedule();
             this.model.bind('reset', this.render, this);
+            this.model.fetch();
         },
 
         render: function(eventName) {
@@ -39,9 +63,29 @@ define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
         }
     });
 
+    var ScheduleScreenView = Backbone.View.extend({
+        el: '#next_event',
+
+        initialize: function() {
+            this.model = new Schedule();
+            this.model.bind('reset', this.render, this);
+            this.model.fetch();
+        },
+
+        render: function(eventName) {
+            this.$el.html(''); // should make this transition it out first
+            var next_event = this.model.next_event();
+            if (typeof(next_event) !== 'undefined' && next_event != null)
+                this.$el.html(new EventScreenView({model: next_event}).render().el);
+            else
+                this.$el.html('<h2>NEK MINNU--oh shit it\'s over???</h2>');
+        }
+    });
+
     return {
         Schedule:  Schedule,
-        ScheduleView: ScheduleView
+        ScheduleView: ScheduleView,
+        ScheduleScreenView: ScheduleScreenView
     };
 
 });

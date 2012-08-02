@@ -1,17 +1,21 @@
 from django.conf.urls import patterns, include, url
+from django.contrib import admin
+from tastypie.api import Api
+from apps.intranet.api import *
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
+
+api = Api(api_name="v1")
+api.register(EntryResource())
+api.register(EventResource())
+api.register(ServerResource())
+api.register(TournamentResource())
+api.register(FAQResource())
+api.register(BarTabResource())
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'ai.views.home', name='home'),
-    # url(r'^ai/', include('ai.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(api.urls)),
+    url(r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'}),
+    url(r'^screen\.html$', 'django.views.generic.simple.direct_to_template', {'template': 'screen.html'})
 )
