@@ -62,12 +62,12 @@ class FAQ(models.Model):
 
 
 class BarTab(models.Model):
-    code = models.CharField(max_length=64, unique=True)
+    code = models.CharField(max_length=32, unique=True)
     confirmation = models.CharField(max_length=8, unique=True)
     value = models.IntegerField()
 
     claimed = models.BooleanField(default=False)
-    claimant = models.CharField(max_length=15)
+    claimant = models.CharField(max_length=15, default="")
 
     def __unicode__(self):
         return "%s for $%d (%s)" % (self.code, self.value,
