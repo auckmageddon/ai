@@ -85,6 +85,9 @@ require([
         var appRouter = new AppRouter();
         Backbone.history.start();
         refresh(appRouter);
+
+        Cufon.set('fontFamily', 'earth');
+        Cufon.replace('.navbar .brand');
     });
 
 });
