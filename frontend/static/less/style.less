@@ -50,14 +50,23 @@ ul, ol {
 	margin: 5px;
 }
 
-#servers li {
-	display: table-row;
-}
+#servers {
+	display: table;
+	width: 100%;
 
-#servers div {
-	display: table-cell;
-	padding: 5px;
-	margin: 5px;
+	li {
+		display: table-row;
+
+		.header {
+			#gradient > .vertical(@black, @white);
+		}
+	}
+
+	div {
+		display: table-cell;
+		padding: 5px;
+		margin: 5px;
+	}
 }
 
 #tournaments li {

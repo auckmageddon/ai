@@ -23,6 +23,7 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
     var ServerListView = Backbone.View.extend({
         tagName: 'ul',
         el: '#servers',
+        template: _.template($('#server_header_template').html()),
 
         events: {
             'change': 'render'
@@ -36,6 +37,7 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
 
         render: function(eventName) {
             this.$el.html('');
+            this.$el.append(this.template({}));
             _.each(this.model.models, function (server) {
                 this.$el.append(new ServerView({model: server}).render().el);
             }, this);
