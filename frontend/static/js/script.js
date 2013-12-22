@@ -1,8 +1,7 @@
 require([
     'jquery',
     'backbone-tastypie',
-    'static/js/news',
-    'static/js/servers',
+    'static/js/news',,
     'static/js/tournaments',
     'static/js/schedule'
 ], function($, Backbone, News, Servers, Tournaments, Schedule) {
@@ -35,14 +34,12 @@ require([
 
     var AppRouter = Backbone.Router.extend({
         newsView:        null,
-        serversView:     null,
         tournamentsView: null,
         scheduleView:    null,
 
 
         routes: {
             'news':        'displayNews',
-            'servers':     'displayServers',
             'tournaments': 'displayTournaments',
             'schedule':    'displaySchedule',
             '*path':       'displayNews' 
@@ -52,10 +49,6 @@ require([
 		// I'm trying to follow https://github.com/ccoenraets/backbone-directory/blob/master/web/js/main.js
         displayNews: function() {
             this.changeView('newsView', News.NewsView);
-		},
-
-        displayServers: function() {
-            this.changeView('serversView', Servers.ServerListView);
 		},
 
         displayTournaments: function() {
@@ -85,9 +78,6 @@ require([
         var appRouter = new AppRouter();
         Backbone.history.start();
         refresh(appRouter);
-
-        Cufon.set('fontFamily', 'earth');
-        Cufon.replace('.navbar .brand');
     });
 
 });

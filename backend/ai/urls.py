@@ -8,10 +8,7 @@ admin.autodiscover()
 api = Api(api_name="v1")
 api.register(EntryResource())
 api.register(EventResource())
-api.register(ServerResource())
 api.register(TournamentResource())
-api.register(FAQResource())
-api.register(BarTabResource())
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),

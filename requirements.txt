@@ -1,5 +1,5 @@
-Django
+Django==1.4
 markdown
-fabric
+#fabric
 South
-django-tastypie
+django-tastypie==0.9.16
