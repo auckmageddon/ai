@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from tastypie.api import Api
-from apps.intranet.api import *
+from apps.intranet.api_v1 import EntryResource, EventResource, TournamentResource
 from apps.intranet.views import IndexView
 
 admin.autodiscover()
