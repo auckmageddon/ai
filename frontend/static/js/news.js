@@ -1,4 +1,5 @@
-define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
+define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
+    'use strict';
 
     var Entry = Backbone.Model.extend({
 
@@ -6,7 +7,7 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var News = Backbone.Collection.extend({
         model: Entry,
-        url: '/api/v1/entry/?format=json'
+        url: '/api/v2/entry/?format=json'
     });
 
     var EntryView = Backbone.View.extend({

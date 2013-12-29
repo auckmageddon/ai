@@ -1,4 +1,5 @@
-define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
+define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
+    'use strict';
 
     var Tournament = Backbone.Model.extend({
 
@@ -6,7 +7,7 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var TournamentList = Backbone.Collection.extend({
         model: Tournament,
-        url: '/api/v1/tournament/?format=json'
+        url: '/api/v2/tournament/?format=json'
     });
 
     var TournamentView = Backbone.View.extend({

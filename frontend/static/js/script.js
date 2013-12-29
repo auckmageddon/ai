@@ -1,10 +1,10 @@
 require([
     'jquery',
-    'backbone-tastypie',
-    'static/js/news',,
+    'backbone',
+    'static/js/news',
     'static/js/tournaments',
     'static/js/schedule'
-], function($, Backbone, News, Servers, Tournaments, Schedule) {
+], function($, Backbone, News, Tournaments, Schedule) {
     'use strict';
 
     var $content = null,
@@ -22,7 +22,7 @@ require([
 
         for (var viewIdx in views) {
             var view = views[viewIdx];
-            if (view != null) {
+            if (view !== null) {
                 view.model.fetch();
             }
         }
@@ -59,7 +59,7 @@ require([
             this.changeView('scheduleView', Schedule.ScheduleView);
 		},
 
-        changeView: function(cachedReference, ViewLoader, model) {
+        changeView: function(cachedReference, ViewLoader) {
             // this is kind of nasty, but whatever.
             if (typeof(this[cachedReference]) === 'undefined' || this[cachedReference] === null) {
                 this[cachedReference] = new ViewLoader();

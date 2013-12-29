@@ -23,11 +23,6 @@ var jam = {
             "name": "backbone",
             "location": "static/js/jam/backbone",
             "main": "backbone.js"
-        },
-        {
-            "name": "backbone-tastypie",
-            "location": "static/js/jam/backbone-tastypie",
-            "main": "backbone-tastypie.js"
         }
     ],
     "version": "0.1.14",

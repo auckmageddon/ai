@@ -1,4 +1,5 @@
-define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
+define(['backbone', 'jquery', 'underscore'], function(Backbone, $, _) {
+    'use strict';
 
     var Event = Backbone.Model.extend({
 
@@ -6,15 +7,13 @@ define(['backbone-tastypie', 'jquery', 'underscore'], function(Backbone, $, _) {
 
     var Schedule = Backbone.Collection.extend({
         model: Event,
-        url: '/api/v1/event/?format=json',
+        url: '/api/v2/event/?format=json',
 
         next_event: function() {
-            log(this.models);
             var now = Date.now();
             var upcoming = _.filter(this.models, function(anEvent) {
                 return now < anEvent['happening_at'];
             });
-            log(upcoming);
 
             return upcoming[0];
         }
