@@ -1,1 +1,0 @@
-watch('.*\.less') { |fname| system('lessc style.less > ../css/style.css') }
