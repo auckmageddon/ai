@@ -1,0 +1,16 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "dependencies": {
+    "backbone": "~1.1.0",
+    "foundation": "zurb/bower-foundation",
+    "handlebars": "~1.2.0",
+    "jquery": "~2.0.3",
+    "modernizr": "~2.6.2",
+    "underscore": "~1.5.2"
+  },
+  "devDependencies": {
+    "require-cs": "~0.4.4",
+    "requirejs": "~2.1.8"
+  }
+}
