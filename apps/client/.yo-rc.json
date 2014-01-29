@@ -1,0 +1,9 @@
+{
+  "generator-backbone": {
+    "appPath": "static/src",
+    "coffee": true,
+    "testFramework": "mocha",
+    "templateFramework": "handlebars",
+    "compassBootstrap": false
+  }
+}

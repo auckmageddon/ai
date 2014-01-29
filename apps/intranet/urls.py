@@ -1,22 +1,16 @@
 from django.conf.urls import patterns, include, url
-from tastypie.api import Api
 from rest_framework.routers import DefaultRouter
-from api_v1 import EntryResource, EventResource, TournamentResource
-from api_v2 import EntryViewSet, EventViewSet, TournamentViewSet
-
-# V1, tastypie -- deprecated
-api = Api(api_name='v1')
-api.register(EntryResource())
-api.register(EventResource())
-api.register(TournamentResource())
+from api_v2 import ArticleViewSet, EventViewSet, ProfileViewSet, TournamentViewSet
+from views import get_steam_account
 
 # V2, rest_framework -- current
 router = DefaultRouter()
-router.register(r'entry', EntryViewSet)
-router.register(r'event', EventViewSet)
-router.register(r'tournament', TournamentViewSet)
+router.register(r'article', ArticleViewSet, base_name='article')
+router.register(r'event', EventViewSet, base_name='event')
+router.register(r'profile', ProfileViewSet, base_name='profile')
+router.register(r'tournament', TournamentViewSet, base_name='tournament')
 
 urlpatterns = patterns('',
-    url(r'^v2/', include(router.urls)),
-    url(r'', include(api.urls)),
+    url(r'^', include(router.urls)),
+    url(r'^steam-profile/$', get_steam_account, name='steam-ids'),
 )

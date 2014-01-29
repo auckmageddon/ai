@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Entry(models.Model):
+class Article(models.Model):
     title        = models.CharField(max_length=255)
     content      = models.TextField()
 
@@ -27,7 +27,7 @@ class Event(models.Model):
     is_published   = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return u"%s at %s" % (self.name, self.happening_at)
+        return u'{} at {}'.format(self.name, self.happening_at)
 
     class Meta:
         ordering = ["happening_at"]
@@ -44,3 +44,17 @@ class Tournament(models.Model):
 
     class Meta:
         ordering = ["name"]
+
+
+class Profile(models.Model):
+    steam_id     = models.CharField(max_length=255, unique=True)
+    username     = models.CharField(max_length=255)
+
+    avatar_url   = models.URLField()
+    profile_url  = models.URLField()
+
+    game_id      = models.CharField(max_length=255, null=True, blank=True)
+    game_name    = models.CharField(max_length=255, null=True, blank=True)
+    game_ip      = models.CharField(max_length=255, null=True, blank=True)
+
+    last_updated = models.DateTimeField(auto_now=True)

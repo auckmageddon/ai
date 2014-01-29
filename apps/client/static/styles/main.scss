@@ -1,0 +1,25 @@
+@import "settings";
+@import "../bower_components/foundation/scss/foundation";
+
+#navigation {
+    background: url("../images/dark_mosaic/dark_mosaic.png") #000 repeat fixed;
+    border-bottom: 1px solid #b4e633;
+    margin-bottom: 10px;
+}
+
+body {
+    background: url("../images/debut_dark/debut_dark.png") #444 repeat fixed;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+    }
+}
+
+.event {
+    font-size: rem-calc(20);
+    padding: 10px 10px 10px 10px;
+}
+
+.side-nav {
+    background: url("../images/dark_mosaic/dark_mosaic.png") #000 repeat fixed;
+}

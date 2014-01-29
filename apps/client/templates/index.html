@@ -1,0 +1,77 @@
+{% load compressed %}
+{% load require %}
+
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ping Zero</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    {% compressed_css 'main' %}
+
+    <script type="text/javascript">
+    var AI = {};
+    AI.CONFIG = {
+        articleSource:    '{% url "article-list" %}',
+        eventSource:      '{% url "event-list" %}',
+        profileSource:    '{% url "profile-list" %}',
+        steamIdSource:    '{% url "steam-ids" %}',
+        tournamentSource: '{% url "tournament-list" %}'
+    }
+    </script>
+
+    {% require_module 'main' %}
+
+</head>
+<body>
+
+  <div id='navigation' class='contain-to-grid'>
+    <nav class='top-bar' data-topbar>
+      <ul class='title-area'>
+        <li class='name'>
+          <h1>
+            <a href='/article/'>
+              Ping Zero
+            </a>
+          </h1>
+        </li>
+        <li class='toggle-topbar menu-icon'><a href='#'><span>menu</span></a></li>
+      </ul>
+
+      <section class='top-bar-section'>
+        <!-- Right Nav Section -->
+        <ul class='right'>
+          <li class='divider'></li>
+          <li><a href='/article/'>Announcements</a></li>
+          <li class='divider'></li>
+          <li><a href='/profile/'>Games</a></li>
+          <li class='divider'></li>
+          <li><a href='/event/'>Schedule</a></li>
+          <li class='divider'></li>
+          <li><a href='/tournament/'>Tournaments</a></li>
+          <li class='divider'></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+
+  <div class="row">
+
+    <!-- Main Content -->
+    <div class="large-12 columns" role="content" id="main">
+    </div>
+    <!-- End Main Content -->
+
+  </div>
+
+
+
+</body>
+</html>

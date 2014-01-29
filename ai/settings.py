@@ -8,6 +8,7 @@ __PROJECT_ROOT__ = path.abspath(path.dirname(__file__))
 
 DEBUG = bool(getenv('DEVELOPMENT', 'false')) # Default to production mode
 TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ['*']
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -28,6 +29,7 @@ USE_TZ = True
 
 MEDIA_ROOT = path.join(__PROJECT_ROOT__, 'media')
 MEDIA_URL = '/media/'
+
 STATIC_ROOT = path.join(__PROJECT_ROOT__, 'static-collected')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
@@ -37,6 +39,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+STATICFILES_STORAGE = 'ai.storage.CachedPipelineRequireStorage'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = getenv('SECRET_KEY')
@@ -75,8 +78,17 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'apps.intranet',
+
+    # Toolbelt
+    'jstemplate',
+    # 'manifesto',
+    'pipeline',
+    'require',
     'south',
+
+    # Our in-project apps
+    'apps.client',
+    'apps.intranet'
 )
 
 LOGGING = {
@@ -102,3 +114,56 @@ LOGGING = {
         },
     }
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.TemplateHTMLRenderer',
+        'djangorestframework_camel_case.CamelCaseJSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.CamelCaseJSONParser', 
+
+    ),
+    'DATETIME_FORMAT': 'iso-8601',
+    
+}
+
+PIPELINE_CSS = {
+    'main': {
+        'source_filenames': (
+            'styles/main.scss',
+        ),
+        'output_filename': 'styles/main.css',
+    }
+}
+
+PIPELINE_CSS_COMPRESSOR = None
+#PIPELINE_JS_COMPRESSOR = None
+#PIPELINE_ENABLED = False
+
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.sass.SASSCompiler',
+)
+
+REQUIRE_BASE_URL = "scripts/"
+REQUIRE_BUILD_PROFILE = 'app.build.js'
+
+# The name of the require.js script used by your project, relative to REQUIRE_BASE_URL.
+REQUIRE_JS = "../bower_components/requirejs/require.js"
+
+# A dictionary of standalone modules to build with almond.js.
+# See the section on Standalone Modules, below.
+REQUIRE_STANDALONE_MODULES = {
+    'main': {
+        'out': 'main.dist.js',
+        'build_profile': 'main.build.js'
+    }
+}
+
+# A tuple of files to exclude from the compilation result of r.js.
+REQUIRE_EXCLUDE = ("build.txt",)
+
+# The execution environment in which to run r.js: auto, node or rhino.
+# auto will autodetect the environment and make use of node if available and rhino if not.
+# It can also be a path to a custom class that subclasses require.environments.Environment and defines some "args" function that returns a list with the command arguments to execute.
+REQUIRE_ENVIRONMENT = "node"
