@@ -1,3 +1,6 @@
+{% load compressed %}
+{% load require %}
+
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -6,69 +9,64 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Auckmageddon</title>
+    <title>Ping Zero</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    {% if DEVELOPMENT %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}src/styles/main.css">
-    <script>
-        AI = {};
-        AI.CONFIG = {
-            articles: '{% url "article-list" %}?format=json'
-        };
-    </script>
-    <script src="{{ STATIC_URL }}src/bower_components/modernizr/modernizr.js"></script>
-    <script data-main="{{ STATIC_URL }}src/scripts/main" src="{{ STATIC_URL }}src/bower_components/requirejs/require.js"></script>
-    {% else %}
-    <script src="{{ STATIC_URL }}dist/main.js"></script>
-    {% endif %}
+    {% compressed_css 'main' %}
 
+    <script type="text/javascript">
+    var AI = {};
+    AI.CONFIG = {
+        articleSource:    '{% url "article-list" %}',
+        eventSource:      '{% url "event-list" %}',
+        profileSource:    '{% url "profile-list" %}',
+        steamIdSource:    '{% url "steam-ids" %}',
+        tournamentSource: '{% url "tournament-list" %}'
+    }
+    </script>
+
+    {% require_module 'main' %}
 
 </head>
 <body>
 
-    <!-- Navigation -->
-
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
-          <a href="/article/">
-            Ping Zero
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li><a href="/article/">Announcements</a></li>
-        <li class="divider"></li>
-        <li><a href="/event/">Schedule</a></li>
-        <li class="divider"></li>
-        <li><a href="/tournament/">Tournaments</a></li>
-        <li class="divider"></li>
+  <div id='navigation' class='contain-to-grid'>
+    <nav class='top-bar' data-topbar>
+      <ul class='title-area'>
+        <li class='name'>
+          <h1>
+            <a href='/article/'>
+              Ping Zero
+            </a>
+          </h1>
+        </li>
+        <li class='toggle-topbar menu-icon'><a href='#'><span>menu</span></a></li>
       </ul>
-    </section>
-  </nav>
 
-  <!-- End Top Bar -->
+      <section class='top-bar-section'>
+        <!-- Right Nav Section -->
+        <ul class='right'>
+          <li class='divider'></li>
+          <li><a href='/article/'>Announcements</a></li>
+          <li class='divider'></li>
+          <li><a href='/profile/'>Games</a></li>
+          <li class='divider'></li>
+          <li><a href='/event/'>Schedule</a></li>
+          <li class='divider'></li>
+          <li><a href='/tournament/'>Tournaments</a></li>
+          <li class='divider'></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
 
   <div class="row">
 
     <!-- Main Content -->
     <div class="large-12 columns" role="content" id="main">
-
-
-
     </div>
-
     <!-- End Main Content -->
 
   </div>

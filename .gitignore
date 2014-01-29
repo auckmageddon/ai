@@ -4,3 +4,8 @@
 env/
 *.db
 *.sqlite3
+.sass_cache/
+**/node_modules/
+**/bower_components/
+ai/static-collected/
+.DS_Store
