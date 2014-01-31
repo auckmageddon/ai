@@ -35,8 +35,9 @@ define [
     collection: events
 
   profileView = new ProfileView
-    collection: profiles
+    collection:    profiles
     steamIdSource: AI.CONFIG.steamIdSource
+    profileId:     AI.CONFIG.profileId
 
   tournamentView = new TournamentView
     collection: tournaments

@@ -17,13 +17,13 @@ def get_steam_id(username):
         return r.json()['response']['steamid']
 
 
-def get_steam_profile(id):
-    r = requests.get(PLAYER_INFO_URL.format(KEY, id))
+def get_steam_profiles(ids):
+    r = requests.get(PLAYER_INFO_URL.format(KEY, ','.join(ids)))
     if r.ok:
-        return r.json()['response']['players'][0]
+        return r.json()['response']['players']
 
 
-def get_useful_steam_data(profile):
+def build_profile(profile):
     return Profile(steam_id=profile['steamid'],
                    username=profile['personaname'],
                    avatar_url=profile['avatar'],
@@ -39,31 +39,41 @@ def get_steam_account_for_name(name):
     if steam_id is None:
         return None
 
-    profile_data = get_steam_profile(steam_id)
-
-    if profile_data is None:
-        return None
-
-    profile = get_useful_steam_data(profile_data)
-    return profile
+    return get_steam_account_for_id(steam_id)
 
 
-def get_steam_account_for_id(steam_id):
-    profile_data = get_steam_profile(steam_id)
+def get_steam_account_for_id(identifier):
+    profiles = get_steam_accounts_for_ids([identifier])
+    return profiles[0]
 
-    if profile_data is None:
-        return None
 
-    profile = get_useful_steam_data(profile_data)
-    return profile
+def get_steam_accounts_for_ids(steam_ids):
+    potential_profiles = get_steam_profiles(steam_ids)
 
+    if potential_profiles == []:
+        return []
+
+    profiles = [build_profile(p) for p in potential_profiles]
+    return profiles
+
+
+@shared_task
 def update_profiles():
     profiles = Profile.objects.all()
     length = len(profiles)
     num_requests = (length / 99) + 1
-    
 
-    for profile in profiles:
-        p = get_steam_account_for_id(profile.steam_id)
-        profile.__dict__.update(p.__dict__)
-        profile.save()
+    for i in range(0, num_requests):
+        lower_limit = i * 100
+        upper_limit = lower_limit + 99
+
+        ids = [p.steam_id for p in profiles[lower_limit:upper_limit]]
+
+        updated_profiles = get_steam_accounts_for_ids(ids)
+
+        for updated in updated_profiles:
+            profile = profiles.get(steam_id=updated.steam_id)
+            profile.game_id = updated.game_id
+            profile.game_ip = updated.game_ip
+            profile.game_name = updated.game_name
+            profile.save()

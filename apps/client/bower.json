@@ -9,7 +9,8 @@
     "markdown": "~0.5.0",
     "modernizr": "~2.6.2",
     "underscore": "~1.5.2",
-    "momentjs": "~2.5.1"
+    "momentjs": "~2.5.1",
+    "nvd3": "~1.1.15-beta"
   },
   "devDependencies": {
     "require-cs": "~0.4.4",

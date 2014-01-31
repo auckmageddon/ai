@@ -20,6 +20,29 @@ body {
     padding: 10px 10px 10px 10px;
 }
 
-.side-nav {
-    background: url("../images/dark_mosaic/dark_mosaic.png") #000 repeat fixed;
+.profile {
+    h4 {
+        line-height: 80%;
+    }
+
+    img {
+        border: 4px solid $info-color;
+        @include radius;
+        height: 50px;
+
+        &.in-game {
+            border: 4px solid $primary-color;
+        }
+    }
 }
+
+#chart {
+    height: 600px;
+    text {
+        fill: white;
+    }
+}
+
+// .side-nav {
+//     background: url("../images/dark_mosaic/dark_mosaic.png") #000 repeat fixed;
+// }

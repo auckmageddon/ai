@@ -58,3 +58,5 @@ class Profile(models.Model):
     game_ip      = models.CharField(max_length=255, null=True, blank=True)
 
     last_updated = models.DateTimeField(auto_now=True)
+    added_by     = models.IPAddressField()
+

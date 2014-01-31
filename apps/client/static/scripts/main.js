@@ -14,11 +14,21 @@
         ],
         exports: 'Backbone'
       },
-      markdown: {
-        exports: 'markdown'
+      d3: {
+        exports: 'd3'
       },
       handlebars: {
         exports: 'Handlebars'
+      },
+      jquery: {
+        exports: '$'
+      },
+      markdown: {
+        exports: 'markdown'
+      },
+      nvd3: {
+        exports: 'nv',
+        deps: ['d3']
       },
       underscore: {
         exports: '_'
@@ -26,12 +36,14 @@
     },
     paths: {
       backbone: '../bower_components/backbone/backbone',
+      d3: '../bower_components/d3/d3',
       foundation: '../bower_components/foundation/js/foundation',
       handlebars: '../bower_components/handlebars/handlebars',
       jquery: '../bower_components/jquery/jquery',
       markdown: '../bower_components/markdown/lib/markdown',
       moment: '../bower_components/momentjs/moment',
       modernizr: '../bower_components/modernizr/modernizr',
+      nvd3: '../bower_components/nvd3/nv.d3',
       underscore: '../bower_components/underscore/underscore'
     },
     packages: [

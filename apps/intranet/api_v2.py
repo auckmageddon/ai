@@ -42,13 +42,14 @@ class ProfileViewSet(viewsets.ModelViewSet, RendersDefaultTemplate):
     serializer_class = ProfileSerializer
 
     def create(self, request):
-        print request.DATA
         try:
             steam_id = request.DATA['steam_id']
             profile = get_steam_account_for_id(steam_id)
+            profile.added_by = request.META['REMOTE_ADDR']
             profile.save()
             return Response(ProfileSerializer(profile).data, status=201)
         except KeyError as e:
+            print e
             return Response(status=400)
 
 

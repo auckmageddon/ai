@@ -2481,7 +2481,7 @@ form .row textarea.columns {
 /* Label Styles */
 label {
   font-size: 0.875rem;
-  color: #4d4d4d;
+  color: #cccccc;
   cursor: pointer;
   display: block;
   font-weight: normal;
@@ -2495,7 +2495,7 @@ label {
     padding: 0.625rem 0; }
   label small {
     text-transform: capitalize;
-    color: #666666; }
+    color: #e6e6e6; }
 
 select {
   -webkit-appearance: none !important;
@@ -5329,5 +5329,17 @@ body {
   font-size: 1.25rem;
   padding: 10px 10px 10px 10px; }
 
-.side-nav {
-  background: url("../images/dark_mosaic/dark_mosaic.png") black repeat fixed; }
+.profile h4 {
+  line-height: 80%; }
+.profile img {
+  border: 4px solid #a0d3e8;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  height: 50px; }
+  .profile img.in-game {
+    border: 4px solid #b4e633; }
+
+#chart {
+  height: 600px; }
+  #chart text {
+    fill: white; }

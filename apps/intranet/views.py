@@ -6,8 +6,10 @@ import json
 
 @api_view(['GET'])
 def get_steam_account(request):
-	name = request.GET.get('name', None)
-	if name is not None:
+	name = request.GET.get('name', '')
+	if name is not '':
 		profile = get_steam_account_for_name(name)
-		serialized = ProfileSerializer(profile)
-		return Response(serialized.data)
+		if profile is not None:
+			serialized = ProfileSerializer(profile)
+			return Response(serialized.data)
+	return Response(status=400)
