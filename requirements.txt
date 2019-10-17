@@ -11,7 +11,7 @@ django-jstemplate==1.3.6
 django-pipeline==1.3.20
 django-require==1.0.5
 django-tastypie==0.9.16
-djangorestframework==2.3.10
+djangorestframework==3.9.1
 djangorestframework-camel-case==0.1.0
 futures==2.1.5
 gunicorn==18.0
